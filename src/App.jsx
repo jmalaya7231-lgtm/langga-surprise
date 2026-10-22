@@ -76,7 +76,7 @@ export default function App() {
             </h1>
 
             <div className="letter-text">
-              <p>Hi, langga ko,</p>
+              <p>Hi, langga,</p>
 
               <p>
                 I just wanted to make something simple
@@ -128,7 +128,7 @@ export default function App() {
               <p className="signature">
                 Always with love,
                 <br />
-                <span>Your person ♡</span>
+                <span>Langga ♡</span>
               </p>
             </div>
 
