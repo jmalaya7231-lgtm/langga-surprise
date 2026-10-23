@@ -1,18 +1,16 @@
 
-
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
-
 :root {
-  font-family: 'DM Sans', sans-serif;
-  color: #69434f;
-  background: #fff5f7;
+  font-family: 'Poppins', sans-serif;
+  color: #75465c;
+  background: #fff5f9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
+  font-weight: 400;
 }
 
 * {
@@ -26,74 +24,81 @@ body {
 }
 
 button {
-  font: inherit;
+  font-family: inherit;
 }
 
 .page {
-  min-height: 100vh;
-  padding: 40px 18px 24px;
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px 18px 24px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 10% 10%, #ffe1eb 0, transparent 42%),
-    radial-gradient(ellipse at 90% 85%, #f8d9e5 0, transparent 40%),
-    #fff7f8;
+    radial-gradient(ellipse at 15% 20%, #ffe1ee 0%, transparent 42%),
+    radial-gradient(ellipse at 85% 80%, #fbdced 0%, transparent 40%),
+    #fff7fa;
 }
 
 .glow {
   position: absolute;
-  width: 230px;
-  height: 230px;
+  z-index: -1;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
-  background: #ffc6d8;
-  filter: blur(80px);
-  opacity: 0.45;
+  filter: blur(65px);
+  opacity: 0.55;
   pointer-events: none;
 }
 
 .glow-one {
-  top: 3%;
+  top: 5%;
   left: -100px;
+  background: #ffc3dd;
 }
 
 .glow-two {
   right: -100px;
-  bottom: 3%;
+  bottom: 5%;
+  background: #f5c7ef;
 }
 
 .floating-hearts {
-  position: fixed;
+  position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
+  z-index: -1;
 }
 
 .floating-hearts span {
   position: absolute;
-  left: calc((var(--i) * 8.1%) + 1%);
+  left: calc((var(--i) * 8.5%) + 2%);
   bottom: -40px;
-  color: #e99ab4;
+  color: #e9a4c2;
   opacity: 0;
-  font-size: 18px;
-  animation: float-up 10s linear infinite;
+  font-size: calc(12px + (var(--i) % 4) * 5px);
+  animation: float-heart 12s linear infinite;
   animation-delay: var(--delay);
 }
 
-@keyframes float-up {
+@keyframes float-heart {
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 0;
   }
-  12% {
-    opacity: 0.65;
+
+  15% {
+    opacity: 0.55;
   }
+
   85% {
-    opacity: 0.45;
+    opacity: 0.35;
   }
+
   100% {
     transform: translateY(-110vh) rotate(35deg);
     opacity: 0;
@@ -101,135 +106,129 @@ button {
 }
 
 .letter-card {
-  width: 100%;
-  max-width: 510px;
-  position: relative;
-  z-index: 1;
-  padding: 30px 28px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid #f7dce5;
+  width: min(100%, 680px);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid rgba(232, 165, 194, 0.48);
   border-radius: 28px;
-  box-shadow: 0 18px 65px rgba(161, 90, 117, 0.12);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow:
+    0 22px 65px rgba(177, 91, 129, 0.12),
+    0 4px 14px rgba(177, 91, 129, 0.06);
   backdrop-filter: blur(12px);
-  animation: card-appear 0.8s ease both;
+  animation: card-appear 0.7s ease both;
 }
 
 @keyframes card-appear {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.tiny-label,
-.eyebrow {
+.tiny-label {
+  margin-bottom: 30px;
+  color: #c17a9c;
   text-align: center;
-  color: #bd7b93;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.17em;
 }
 
-.opening {
+.opening,
+.letter-content {
   text-align: center;
-  padding: 18px 0 8px;
 }
 
 .envelope {
-  width: 150px;
-  height: 112px;
   position: relative;
-  margin: 25px auto 29px;
-  animation: envelope-float 3s ease-in-out infinite;
-}
-
-@keyframes envelope-float {
-  0%, 100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(-7px) rotate(1deg);
-  }
+  width: 180px;
+  height: 125px;
+  margin: 12px auto 32px;
 }
 
 .envelope-back {
   position: absolute;
   inset: 0;
-  border-radius: 8px;
-  background: #eaa2ba;
+  border-radius: 9px;
+  background: #e9a9c6;
 }
 
 .letter-preview {
   position: absolute;
-  top: -14px;
-  left: 15px;
-  width: 120px;
-  height: 88px;
-  border-radius: 5px;
-  background: #fff9fa;
-  box-shadow: 0 3px 8px #a44f6b15;
+  top: -13px;
+  left: 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  color: #ad6a82;
-  font-family: 'Playfair Display', serif;
-  font-size: 12px;
+  gap: 10px;
+  width: 136px;
+  height: 105px;
+  border: 1px solid #f1d4e1;
+  border-radius: 5px;
+  background: #fffafc;
+  color: #b66b8d;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
 }
 
 .preview-heart {
-  color: #d77e9e;
-  font-size: 18px;
+  color: #d76e9c;
 }
 
 .envelope-flap {
   position: absolute;
-  inset: 0;
-  background: #f4c4d3;
-  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-right: 90px solid transparent;
+  border-left: 90px solid transparent;
+  border-top: 70px solid #f3c4d9;
+  z-index: 3;
 }
 
 .envelope-front {
   position: absolute;
   inset: 0;
-  background: #f5b6cb;
-  clip-path: polygon(0 100%, 0 0, 50% 56%, 100% 0, 100% 100%);
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 9px 9px;
+  background: #e8a3c1;
+  clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+  z-index: 4;
 }
 
 .envelope-heart {
   position: absolute;
-  top: 45px;
+  top: 56px;
   left: 0;
   right: 0;
-  text-align: center;
+  z-index: 5;
   color: white;
-  font-size: 22px;
-  filter: drop-shadow(0 2px 3px #b45b7a50);
+  font-size: 1.5rem;
 }
 
 h1 {
-  margin: 0;
-  color: #714657;
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  font-size: clamp(29px, 7vw, 38px);
-  line-height: 1.25;
+  margin: 0 0 18px;
+  color: #854e68;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.3rem, 6vw, 3.3rem);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .pink {
-  color: #dc86a5;
+  color: #dc83aa;
 }
 
 .subtitle {
-  margin: 15px 0 24px;
-  color: #987481;
-  font-size: 13px;
+  margin: 0 auto 26px;
+  color: #9b7486;
+  font-size: 0.92rem;
   line-height: 1.9;
 }
 
@@ -237,150 +236,195 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 25px;
-  min-height: 48px;
-  border: none;
-  border-radius: 50px;
-  background: #d987a4;
+  gap: 8px;
+  min-height: 46px;
+  padding: 12px 25px;
+  border: 1px solid #d77da4;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #eaa3c1, #d981a8);
+  box-shadow: 0 7px 18px rgba(199, 104, 148, 0.2);
   color: white;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 6px 18px #d987a440;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .open-button:hover {
   transform: translateY(-2px);
-  background: #c97494;
+  box-shadow: 0 10px 23px rgba(199, 104, 148, 0.28);
 }
 
-.open-button:focus-visible {
-  outline: 3px solid #a95376;
+.open-button:focus-visible,
+.message-link:focus-visible {
+  outline: 3px solid #d77da4;
   outline-offset: 4px;
 }
 
 .small-note {
-  margin-top: 19px;
-  color: #bd94a2;
-  font-size: 10px;
-  letter-spacing: 0.4px;
+  margin: 20px 0 0;
+  color: #bb91a4;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
 }
 
-.letter-content {
-  
-font-family: 'Dancing Script', cursive;
-font-size: 1.5rem;
-line-height: 1.8;
-
-  animation: reveal-letter 0.75s ease both;
+.letter-icon {
+  margin: 0 0 8px;
+  font-size: 2.1rem;
 }
 
-@keyframes reveal-letter {
+.eyebrow {
+  margin: 0 0 12px;
+  color: #c17a9c;
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.17em;
+}
+
+.letter-text {
+  margin-top: 28px;
+  color: #795969;
+  font-size: 0.9rem;
+  line-height: 1.95;
+  text-align: left;
+}
+
+.letter-text p {
+  margin: 0 0 20px;
+}
+
+.letter-text p:first-child {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.65rem;
+  font-weight: 600;
+}
+
+.letter-text .closing {
+  color: #995773;
+  font-weight: 500;
+}
+
+.signature {
+  margin-top: 28px !important;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.45rem;
+  line-height: 1.6;
+}
+
+.signature span {
+  color: #d16f9b;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.divider-heart {
+  margin: 25px 0 15px;
+  color: #d98bad;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.ending {
+  margin: 0;
+  color: #ad7d94;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.message-link {
+  display: block;
+  margin: 18px auto 8px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #c76591;
+  font: inherit;
+  font-size: 0.86rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.message-link:hover {
+  color: #a83e70;
+  transform: translateY(-2px);
+}
+
+.replay-button {
+  margin-top: 16px;
+  background: #fff;
+  color: #bd6e93;
+  box-shadow: none;
+}
+
+.replay-button:hover {
+  background: #fff5f9;
+  box-shadow: 0 5px 14px rgba(199, 104, 148, 0.12);
+}
+
+.second-letter-card {
+  animation: letter-appear 0.5s ease both;
+}
+
+@keyframes letter-appear {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.letter-icon {
-  text-align: center;
-  font-size: 33px;
-  margin: 22px 0 13px;
-}
-
-.letter-content h1 {
-  text-align: center;
-  margin: 10px 0 25px;
-  font-size: clamp(27px, 6vw, 34px);
-}
-
-.letter-text {
-  padding: 22px 20px;
-  background: #fff8fa;
-  border: 1px solid #f8e6ec;
-  border-radius: 17px;
-  font-size: 13px;
-  line-height: 1.95;
-  color: #785663;
-}
-
-.letter-text p {
-  margin: 0 0 16px;
-}
-
-.letter-text p:last-child {
-  margin-bottom: 0;
-}
-
-.closing {
-  color: #b76081;
-  font-weight: 600;
-}
-
-.signature {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 15px;
-}
-
-.signature span {
-  color: #bd6f8e;
-  font-size: 19px;
-}
-
-.divider-heart {
-  margin: 24px 0 12px;
-  text-align: center;
-  color: #d98aa5;
-  letter-spacing: 5px;
-}
-
-.ending {
-  text-align: center;
-  color: #a16f81;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 16px;
-}
-
-.replay-button {
-  display: flex;
-  margin: 20px auto 0;
-}
-
 footer {
-  position: relative;
-  z-index: 1;
-  padding-top: 22px;
-  color: #b58b9a;
-  font-size: 10px;
-  letter-spacing: 1px;
+  margin-top: 25px;
+  color: #b48ba0;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
   text-align: center;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .page {
-    padding: 25px 13px 18px;
+    justify-content: flex-start;
+    padding: 28px 12px 20px;
   }
 
   .letter-card {
-    padding: 25px 17px;
-    border-radius: 23px;
+    padding: 27px 21px;
+    border-radius: 22px;
+  }
+
+  .tiny-label {
+    margin-bottom: 24px;
+    font-size: 0.61rem;
   }
 
   .letter-text {
-    padding: 18px 15px;
-    font-size: 12.5px;
+    font-size: 0.85rem;
+    line-height: 1.85;
+  }
+
+  .letter-text p {
+    margin-bottom: 17px;
+  }
+
+  .envelope {
+    transform: scale(0.92);
+    margin-bottom: 24px;
   }
 
   .open-button {
-    min-height: 46px;
+    max-width: 100%;
+  }
+
+  footer {
+    margin-top: 20px;
   }
 }
 
@@ -390,16 +434,6 @@ footer {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-.signature {
-  font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #c45b83;
-  text-align: center;
-  margin-top: 1.5rem;
 }
