@@ -75,9 +75,12 @@ export default function App() {
               </p>
 
               <p className="closing">
-                I miss you a lot, langga. Take care of yourself,
-                okay? No pressure. Just know that I still care
-                about you. ♡
+                I miss you a lot, langga. I hope you know that.
+                If you're reading this and you're ready to talk
+                to me again, please message me, okay? I'd really
+                love to hear from you. I'm still here, langga,
+                and I'll be happy to hear from you whenever
+                you're ready. No pressure. . ♡
               </p>
 
               <p className="signature">
